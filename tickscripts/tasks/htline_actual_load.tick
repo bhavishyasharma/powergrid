@@ -1,0 +1,23 @@
+dbrp "powergrid"."autogen"
+
+var window_size = 5s
+
+stream
+    |from()
+        .measurement('ltline')
+        .groupBy('htline', 'substation')
+    |window()
+        .period(window_size)
+        .every(window_size)
+        .align()
+    |sum('load')
+        .as('actual_load')
+    |log()
+    |influxDBOut()
+        .database('powergrid')
+        .retentionPolicy('autogen')
+        .measurement('htline')
+        .precision('s')
+    
+
+

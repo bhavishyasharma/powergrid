@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+  influxdb:
+    image: influxdb:1.8
+    hostname: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+
+  hivemq:
+    image: hivemq/hivemq4
+    hostname: ${HIVEMQ_HOSTNAME}
+    ports:
+      - "1883:1883"
+      - "8080:8080"
+
+  telegraf:
+    image: telegraf
+    hostname: telegraf
+    depends_on: 
+      - influxdb
+      - hivemq
+    links: 
+      - influxdb
+      - hivemq
+    environment:
+      INFLUXDB_URL: ${INFLUXDB_URL}
+      INFLUXDB_DATABASE_NAME: ${INFLUXDB_DATABASE_NAME}
+      HIVEMQ_URL: ${HIVEMQ_URL}
+      HIVEMQ_USERNAME: ${HIVEMQ_USERNAME}
+      HIVEMQ_PASSWORD: ${HIVEMQ_PASSWORD}
+    volumes: 
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+
+  chronograf:
+    image: chronograf
+    hostname: chronograf
+    ports: 
+      - "8888:8888"
+    links: 
+      - influxdb
+    volumes: 
+      - chronograf-data:/var/lib/chronograf
+
+  kapacitor:
+    image: kapacitor
+    hostname: kapacitor
+    ports: 
+      - "9092:9092"
+    links: 
+      - influxdb
+      - telegraf
+      - hivemq
+      - chronograf
+    environment:
+      KAPACITOR_INFLUXDB_0_URLS_0: ${INFLUXDB_URL}
+    volumes: 
+      - kapacitor-data:/var/lib/kapacitor
+      - ./kapacitor.conf:/etc/kapacitor/kapacitor.conf:ro
+      - ./tickscripts:/etc/kapacitor/tickscripts
+
+  grafana:
+    image: grafana/grafana
+    ports: 
+      - "3000:3000"
+    links: 
+      - influxdb
+    environment: 
+      GF_INSTALL_PLUGINS: "grafana-piechart-panel,grafana-clock-panel,briangann-datatable-panel"
+    volumes: 
+      - grafana-data:/var/lib/grafana
+
+volumes:
+  influxdb-data:
+  chronograf-data:
+  kapacitor-data:
+  grafana-data:

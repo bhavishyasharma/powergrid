@@ -1,0 +1,146 @@
+{
+  "substations": [
+    {
+      "code": "ss_01",
+      "name": "Gachibowli 33/11kV",
+      "max_load": 1000,
+      "ht_lines": [
+        {
+          "code": "ht_01",
+          "name": "GB Line - 01",
+          "max_load": 300,
+          "lt_lines": [
+            {
+              "code": "lt_01",
+              "name": "Street - 01",
+              "max_load": 30,
+              "consumers": [
+                {
+                  "code": "cs_01",
+                  "name": "Consumer - 02",
+                  "max_load": 3,
+                  "load_type": "single-phase"
+                },
+                {
+                  "code": "cs_02",
+                  "name": "Consumer - 02",
+                  "max_load": 3,
+                  "load_type": "three-phase"
+                }
+              ]
+            },
+            {
+              "code": "lt_02",
+              "name": "Street - 02",
+              "max_load": 30,
+              "consumers": [
+                {
+                  "code": "cs_03",
+                  "name": "Consumer - 03",
+                  "max_load": 3,
+                  "load_type": "single-phase"
+                },
+                {
+                  "code": "cs_04",
+                  "name": "Consumer - 04",
+                  "max_load": 3,
+                  "load_type": "three-phase"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "ht_02",
+          "name": "GB Line - 02",
+          "max_load": 300,
+          "lt_lines": [
+            {
+              "code": "lt_03",
+              "name": "Street - 11",
+              "max_load": 30,
+              "consumers": [
+                {
+                  "code": "cs_05",
+                  "name": "Consumer - 05",
+                  "max_load": 3,
+                  "load_type": "single-phase"
+                },
+                {
+                  "code": "cs_06",
+                  "name": "Consumer - 06",
+                  "max_load": 3,
+                  "load_type": "three-phase"
+                }
+              ]
+            },
+            {
+              "code": "lt_04",
+              "name": "Street - 12",
+              "max_load": 30,
+              "consumers": [
+                {
+                  "code": "cs_07",
+                  "name": "Consumer - 07",
+                  "max_load": 3,
+                  "load_type": "single-phase"
+                },
+                {
+                  "code": "cs_08",
+                  "name": "Consumer - 08",
+                  "max_load": 3,
+                  "load_type": "three-phase"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "ht_03",
+          "name": "GB Line - 03",
+          "max_load": 300,
+          "lt_lines": [
+            {
+              "code": "lt_05",
+              "name": "Street - 21",
+              "max_load": 30,
+              "consumers": [
+                {
+                  "code": "cs_09",
+                  "name": "Consumer - 09",
+                  "max_load": 3,
+                  "load_type": "single-phase"
+                },
+                {
+                  "code": "cs_10",
+                  "name": "Consumer - 10",
+                  "max_load": 3,
+                  "load_type": "three-phase"
+                }
+              ]
+            },
+            {
+              "code": "lt_06",
+              "name": "Street - 22",
+              "max_load": 30,
+              "consumers": [
+                {
+                  "code": "cs_11",
+                  "name": "Consumer - 11",
+                  "max_load": 3,
+                  "load_type": "single-phase"
+                },
+                {
+                  "code": "cs_12",
+                  "name": "Consumer - 12",
+                  "max_load": 3,
+                  "load_type": "three-phase"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
